@@ -1,0 +1,48 @@
+/*  Junxi Li, A91105747
+    Lingfei Lu, A91046735
+*/
+
+a) Why do we use in-order traversal to print the BST nodes; while use 
+post-order traversal to delete all BST nodes? 
+
+Answer: The reason why we use inorder traversal is that the data of the node
+will be printed in sorted order.
+
+The reason why we use post order traversal is that we will not lose reference to
+left and right children, because we delete parent after deleting left and right
+children.
+
+
+
+
+
+b) Read the source code in BSTNode.hpp and BSTIterator.hpp. Then try to 
+understand how to use operator overloading in C++, which is a feature that Java 
+does not support. Pick an example from the provided source code and state which 
+operator is overloaded, what is the expression of this operator (i.e '+' has 
+expression 'a+b') and give an example of using this overloaded operator.
+
+
+Answer: 
+
+Example: 
+
+/** equal operator overloaded */
+bool operator!=(BSTIterator<Data> const & other) const {
+    if(other == 0)  return true;
+    else if(this->curr == 0 && other.curr == 0)  return false;
+    else if(this->curr == 0 || other.curr == 0)  return true;
+    return (this->curr->data != other.curr->data);
+ }
+
+/** in main */
+  vector<int>::iterator vit = v.begin();
+  vector<int>::iterator ven = v.end();
+  return vit != ven;
+
+
+The overloaded operator is the != symbol
+The expression of the operator is vit != ven
+
+vit != ven will compare the variable data between vit and ven, return true if
+vit->Data != ven->Data, return false if vit->Data != ven->Data.
